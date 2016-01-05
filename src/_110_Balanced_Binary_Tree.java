@@ -21,11 +21,7 @@ public class _110_Balanced_Binary_Tree {
         }
         int depthLeft = getDepth(root.left);
         int depthRight = getDepth(root.right);
-        if (depthLeft - depthRight <= 1 && depthLeft - depthRight >= -1) {
-            return isBalanced(root.right) && isBalanced(root.left);
-        } else {
-            return false;
-        }
+        return depthLeft - depthRight <= 1 && depthLeft - depthRight >= -1 && isBalanced(root.right) && isBalanced(root.left);
     }
 
     public int getDepth(TreeNode root) {
