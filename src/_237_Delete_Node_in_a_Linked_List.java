@@ -1,3 +1,5 @@
+import models.ListNode;
+
 /**
  * Created by Sorcerer on 2016/1/3 0003.
  * <p>
@@ -6,15 +8,6 @@
 public class _237_Delete_Node_in_a_Linked_List {
     public static void main(String[] args) {
 
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 
     /*

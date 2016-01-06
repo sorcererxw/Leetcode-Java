@@ -1,19 +1,11 @@
+import models.TreeNode;
+
 /**
  * Created by Sorcerer on 2016/1/5 0005.
  * <p>
  * https://leetcode.com/problems/balanced-binary-tree/
  */
 public class _110_Balanced_Binary_Tree {
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public boolean isBalanced(TreeNode root) {
         if (root == null) {

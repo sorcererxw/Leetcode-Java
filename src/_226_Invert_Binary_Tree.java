@@ -1,4 +1,4 @@
-import sun.reflect.generics.tree.Tree;
+import models.TreeNode;
 
 /**
  * Created by Sorcerer on 2016/1/3 0003.
@@ -9,16 +9,6 @@ public class _226_Invert_Binary_Tree {
 
     public static void main(String[] args) {
 
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 
     public TreeNode invertTree(TreeNode root) {
