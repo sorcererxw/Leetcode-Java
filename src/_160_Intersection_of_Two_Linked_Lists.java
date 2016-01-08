@@ -8,8 +8,8 @@ import util.Utility;
  */
 public class _160_Intersection_of_Two_Linked_Lists {
     public static void main(String[] args) {
-        ListNode a = Utility.initListNodeList(new int[]{1, 2, 3, 4, 5});
-        ListNode b = Utility.initListNodeList(new int[]{3, 4, 5});
+        ListNode a = Utility.generateListNodeList(new int[]{1, 2, 3, 4, 5});
+        ListNode b = Utility.generateListNodeList(new int[]{3, 4, 5});
         Utility.printListNodeList(getIntersectionNode(a,b));
     }
 
