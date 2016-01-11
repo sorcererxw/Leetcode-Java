@@ -30,6 +30,13 @@ public class Utility {
         System.out.println("");
     }
 
+    public static void printfStringArray(String[] strings){
+        for (int i = 0; i < strings.length; i++) {
+            System.out.print(strings[i] + " ");
+        }
+        System.out.println("");
+    }
+
     public static void printListNodeList(ListNode head) {
         ListNode tmp = head;
         while (tmp != null) {
