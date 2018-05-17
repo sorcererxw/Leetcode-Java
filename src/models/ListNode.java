@@ -1,7 +1,8 @@
 package models;
 
 /**
- * Created by Sorcerer on 2016/1/6 0006.
+ * @author Sorcerer
+ * @date 2016/1/6 0006
  */
 public class ListNode {
     public int val;
@@ -11,14 +12,14 @@ public class ListNode {
         val = x;
     }
 
-    public static ListNode build(int[] val) {
+    public static ListNode build(int[] value) {
         ListNode root = null, cur = null;
-        for (int i = 0; i < val.length; i++) {
+        for (int val : value) {
             if (root == null) {
-                root = new ListNode(val[i]);
+                root = new ListNode(val);
                 cur = root;
             } else {
-                cur.next = new ListNode(val[i]);
+                cur.next = new ListNode(val);
                 cur = cur.next;
             }
         }

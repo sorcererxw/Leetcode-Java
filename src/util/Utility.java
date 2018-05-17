@@ -2,14 +2,13 @@ package util;
 
 import models.ListNode;
 import models.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Sorcerer on 2016/1/3 0003.
+ * @author Sorcerer
+ * @date 2016/1/3 0003
  */
 public class Utility {
     public static void main(String[] args) {
@@ -17,24 +16,24 @@ public class Utility {
     }
 
     public static void printIntArray(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            System.out.print(nums[i] + " ");
+        for (int num : nums) {
+            System.out.print(num + " ");
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public static void printCharArray(char[] chars) {
         for (int i = 0; i < chars.length; i++) {
             System.out.print(chars[i] + " ");
         }
-        System.out.println("");
+        System.out.println();
     }
 
-    public static void printfStringArray(String[] strings){
-        for (int i = 0; i < strings.length; i++) {
-            System.out.print(strings[i] + " ");
+    public static void printfStringArray(String[] strings) {
+        for (String string : strings) {
+            System.out.print(string + " ");
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public static void printListNodeList(ListNode head) {
@@ -43,18 +42,18 @@ public class Utility {
             System.out.print(tmp.val + " ");
             tmp = tmp.next;
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public static ListNode generateListNodeList(int[] nums) {
         ListNode head = null;
         ListNode current = null;
-        for (int i = 0; i < nums.length; i++) {
+        for (int num : nums) {
             if (current == null) {
-                current = new ListNode(nums[i]);
+                current = new ListNode(num);
                 head = current;
             } else {
-                current.next = new ListNode(nums[i]);
+                current.next = new ListNode(num);
                 current = current.next;
             }
         }
@@ -90,7 +89,7 @@ public class Utility {
         if (node == null) {
             return;
         }
-        List list;
+        List<Integer> list;
         if (lists.size() <= step) {
             list = new ArrayList<>();
             lists.add(list);

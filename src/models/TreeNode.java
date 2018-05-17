@@ -1,7 +1,9 @@
 package models;
 
 /**
- * Created by Sorcerer on 2016/1/6 0006.
+ *
+ * @author Sorcerer
+ * @date 2016/1/6 0006
  */
 public class TreeNode {
     public int val;
