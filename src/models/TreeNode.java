@@ -1,14 +1,13 @@
 package models;
 
 /**
- *
  * @author Sorcerer
  * @date 2016/1/6 0006
  */
 public class TreeNode {
     public int val;
-    public TreeNode left;
-    public TreeNode right;
+    public TreeNode left = null;
+    public TreeNode right = null;
 
     public TreeNode(int x) {
         val = x;

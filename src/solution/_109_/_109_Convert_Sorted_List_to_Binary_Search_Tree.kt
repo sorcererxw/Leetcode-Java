@@ -1,4 +1,4 @@
-package _109_Convert_Sorted_List_to_Binary_Search_Tree
+package solution.__109_Convert_Sorted_List_to_Binary_Search_Tree
 
 import models.ListNode
 import models.TreeNode

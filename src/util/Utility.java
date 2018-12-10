@@ -4,7 +4,9 @@ import models.ListNode;
 import models.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author Sorcerer
@@ -12,7 +14,7 @@ import java.util.List;
  */
 public class Utility {
     public static void main(String[] args) {
-        printTreeNodeTree(generateTreeNodeTree(new Integer[]{1, 2, 3, 4, 5, 6}));
+        printTree(generateTreeNodeTree(new Integer[]{1, 22344444, 3, 4, 5, 600,4353}));
     }
 
     public static void printIntArray(int[] nums) {
@@ -45,6 +47,36 @@ public class Utility {
         System.out.println();
     }
 
+    private static List<Integer> convertToList(TreeNode node, int deep, int level) {
+        if (node == null) {
+            List<Integer> list = new ArrayList<>();
+            if (level <= deep) {
+                list.add(null);
+            }
+            return list;
+        }
+        List<Integer> result = new ArrayList<>();
+        result.add(node.val);
+        result.addAll(convertToList(node.left, deep, level + 1));
+        result.addAll(convertToList(node.right, deep, level + 1));
+        return result;
+    }
+
+    private static int treeDeep(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + Math.max(treeDeep(node.left), treeDeep(node.right));
+    }
+
+    public static void printTreeNode(TreeNode node) {
+        System.out.println(Arrays.toString(convertToList(node, treeDeep(node), 1).toArray()));
+    }
+
+    public static void printTree(TreeNode node) {
+        new TreePrinter().printTree(node);
+    }
+
     public static ListNode generateListNodeList(int[] nums) {
         ListNode head = null;
         ListNode current = null;
@@ -75,7 +107,7 @@ public class Utility {
         }
     }
 
-    private static void printTreeNodeTree(TreeNode root) {
+    public static void printTreeNodeTree(TreeNode root) {
         System.out.println(levelOrderBottom(root));
     }
 

@@ -1,3 +1,5 @@
+package solution._1_;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,9 +24,6 @@ public class _1_Two_Sum {
     }
 
     public static void main(String[] args) {
-        _1_Two_Sum solution = new _1_Two_Sum();
-        System.out.println(
-                Arrays.toString(solution.twoSum(new int[]{2, 7, 11, 15}, 9))
-        );
+
     }
 }
