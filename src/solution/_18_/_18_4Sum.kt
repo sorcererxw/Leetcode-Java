@@ -1,5 +1,3 @@
-package solution._18_
-
 import java.util.*
 
 /**

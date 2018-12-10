@@ -1,4 +1,4 @@
-package solution._767_Reorganize_String
+package _767_Reorganize_String
 
 /**
  * @author: SorcererXW

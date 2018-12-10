@@ -1,4 +1,4 @@
-package solution.__67_Add_Binary
+package _67_Add_Binary
 
 /**
  * @author: SorcererXW

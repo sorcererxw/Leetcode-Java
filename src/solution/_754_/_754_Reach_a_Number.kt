@@ -1,4 +1,4 @@
-package solution._754_Reach_a_Number
+package _754_Reach_a_Number
 
 /**
  * @author: SorcererXW

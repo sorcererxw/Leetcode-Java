@@ -1,4 +1,4 @@
-package solution._492_Construct_the_Rectangle
+package _492_Construct_the_Rectangle
 
 /**
  * @author: SorcererXW

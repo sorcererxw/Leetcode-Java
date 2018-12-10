@@ -1,4 +1,4 @@
-package solution._529_Minesweeper
+package _529_Minesweeper
 
 /**
  * @author: SorcererXW

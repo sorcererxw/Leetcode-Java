@@ -1,4 +1,4 @@
-package solution.__40_Combination_Sum_II
+package _40_Combination_Sum_II
 
 /**
  * @author: SorcererXW

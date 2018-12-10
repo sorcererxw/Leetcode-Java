@@ -12,13 +12,20 @@ import java.nio.file.StandardCopyOption
  */
 fun moveToPackage(sourceFolder: File, distFolder: File) {
     sourceFolder.listFiles()
-            .filter { it.absolutePath.endsWith(".kt") }
+            .filter { it.name.matches(Regex("_\\d+_.+")) }
             .forEach {
                 val folder = File(distFolder, "_${it.name.split("_")[1]}_")
                 if (!folder.exists()) folder.mkdir()
                 println(it.absoluteFile)
                 Files.copy(Paths.get(it.toURI()), Paths.get(File(folder, it.name).toURI()), StandardCopyOption.REPLACE_EXISTING)
+                it.delete()
             }
+
+//            .forEach {
+//                val id = it.name.split("_")[1].toInt()
+//                if (distFolder.listFiles().any { it.name.startsWith("_${id}_") })
+//                    it.delete()
+//            }
 }
 
 fun main(args: Array<String>) {

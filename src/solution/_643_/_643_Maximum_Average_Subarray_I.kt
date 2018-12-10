@@ -1,4 +1,4 @@
-package solution._643_Maximum_Average_Subarray_I
+package _643_Maximum_Average_Subarray_I
 
 /**
  * @author: SorcererXW

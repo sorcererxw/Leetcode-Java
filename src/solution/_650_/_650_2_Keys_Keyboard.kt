@@ -1,4 +1,4 @@
-package solution._650_2_Keys_Keyboard
+package _650_2_Keys_Keyboard
 
 /**
  * @author: SorcererXW

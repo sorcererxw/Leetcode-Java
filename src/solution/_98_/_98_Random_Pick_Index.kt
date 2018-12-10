@@ -1,4 +1,4 @@
-package solution.__98_Random_Pick_Index
+package _98_Random_Pick_Index
 
 /**
  * @author: SorcererXW

@@ -1,4 +1,4 @@
-package solution._130_Surrounded_Regions
+package _130_Surrounded_Regions
 
 /**
  * @author: SorcererXW

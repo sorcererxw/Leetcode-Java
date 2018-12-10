@@ -1,4 +1,4 @@
-package solution.__54_Spiral_Matrix
+package _54_Spiral_Matrix
 
 /**
  * @author: SorcererXW

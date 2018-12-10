@@ -1,4 +1,4 @@
-package _828_Unique_Letter_String
+package solution._828_
 
 /**
  * @author: SorcererXW

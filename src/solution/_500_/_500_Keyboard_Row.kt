@@ -1,4 +1,4 @@
-package solution._500_Keyboard_Row
+package _500_Keyboard_Row
 
 /**
  * @author: SorcererXW

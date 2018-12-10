@@ -1,4 +1,4 @@
-package solution.__75_Sort_Colors
+package _75_Sort_Colors
 
 /**
  * @author: SorcererXW
