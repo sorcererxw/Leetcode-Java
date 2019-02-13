@@ -13,6 +13,7 @@ public class ListNode {
     }
 
     public static ListNode build(int[] value) {
+
         ListNode root = null, cur = null;
         for (int val : value) {
             if (root == null) {
