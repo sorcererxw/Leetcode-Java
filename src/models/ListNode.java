@@ -12,6 +12,23 @@ public class ListNode {
         val = x;
     }
 
+    public static ListNode buildCycleNodeList(int[] value, int cycleEntry) {
+        if(value.length==0) {
+            return null;
+        }
+        ListNode[] nodes = new ListNode[value.length];
+        for (int i = 0; i < value.length; i++) {
+            nodes[i] = new ListNode(value[i]);
+            if (i != 0) {
+                nodes[i - 1].next = nodes[i];
+            }
+        }
+        if (cycleEntry >= 0 && cycleEntry < nodes.length) {
+            nodes[nodes.length - 1].next = nodes[cycleEntry];
+        }
+        return nodes[0];
+    }
+
     public static ListNode build(int[] value) {
 
         ListNode root = null, cur = null;
