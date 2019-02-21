@@ -13,8 +13,23 @@ public class TreeNode {
         val = x;
     }
 
-    private static TreeNode build(int idx, int[] list) {
-        if (idx > list.length || list[idx - 1] == -1) {
+    public void inOrderQuery() {
+        doInOrderQuery(this);
+        System.out.println();
+    }
+
+    private static void doInOrderQuery(TreeNode node) {
+        if (node == null) {
+            System.out.print(" #");
+            return;
+        }
+        doInOrderQuery(node.left);
+        System.out.print(" " + node.val);
+        doInOrderQuery(node.right);
+    }
+
+    private static TreeNode build(int idx, Integer[] list) {
+        if (idx > list.length || list[idx - 1] == null) {
             return null;
         }
         TreeNode root = new TreeNode(list[idx - 1]);
@@ -23,7 +38,8 @@ public class TreeNode {
         return root;
     }
 
-    public static TreeNode build(int[] levelOrderList) {
+    public static TreeNode build(Integer[] levelOrderList) {
         return build(1, levelOrderList);
     }
+
 }

@@ -29,6 +29,7 @@ public class ListNode {
         return nodes[0];
     }
 
+    @SuppressWarnings("Duplicates")
     public static ListNode build(int[] value) {
 
         ListNode root = null, cur = null;
