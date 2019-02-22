@@ -8,3 +8,7 @@ package util
 fun Int.println() {
     println(this)
 }
+
+fun IntArray.println(){
+    println(this.toList().toString())
+}
