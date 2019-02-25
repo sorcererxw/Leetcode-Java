@@ -9,6 +9,23 @@ fun Int.println() {
     println(this)
 }
 
-fun IntArray.println(){
+fun Boolean.println() {
+    println(this)
+}
+
+
+fun Array<BooleanArray>.println() {
+    this.forEach {
+        println(it.map { if (it) 1 else 0 })
+    }
+}
+
+fun Array<IntArray>.println() {
+    this.forEach {
+        println(it.toList())
+    }
+}
+
+fun IntArray.println() {
     println(this.toList().toString())
 }
