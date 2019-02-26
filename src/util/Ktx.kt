@@ -20,6 +20,13 @@ fun Array<BooleanArray>.println() {
     }
 }
 
+fun Array<CharArray>.println() {
+    this.forEach {
+        println(it.toList())
+    }
+}
+
+
 fun Array<IntArray>.println() {
     this.forEach {
         println(it.toList())
