@@ -60,6 +60,6 @@ class Solution {
 fun main(args: Array<String>) {
     val solution = Solution()
     println(solution.maxPathSum(
-            TreeNode.build(intArrayOf(-10, 9, 20, -1, -1, 15, 7))
+            TreeNode.build(arrayOf(-10, 9, 20, null, null, 15, 7))
     ))
 }

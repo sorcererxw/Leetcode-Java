@@ -13,6 +13,14 @@ fun Boolean.println() {
     println(this)
 }
 
+fun List<List<Int>>.println() {
+    println("[")
+    this.forEach {
+        print("  ")
+        println(it)
+    }
+    println("]")
+}
 
 fun Array<BooleanArray>.println() {
     this.forEach {
@@ -25,7 +33,6 @@ fun Array<CharArray>.println() {
         println(it.toList())
     }
 }
-
 
 fun Array<IntArray>.println() {
     this.forEach {
