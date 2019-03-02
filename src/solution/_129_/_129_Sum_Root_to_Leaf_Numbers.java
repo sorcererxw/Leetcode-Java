@@ -31,7 +31,7 @@ public class _129_Sum_Root_to_Leaf_Numbers {
         _129_Sum_Root_to_Leaf_Numbers solution = new _129_Sum_Root_to_Leaf_Numbers();
         System.out.println(
                 solution.sumNumbers(
-                        TreeNode.build(new int[]{1, 2, 3})
+                        TreeNode.build(new Integer[]{1, 2, 3})
                 )
         );
     }

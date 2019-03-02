@@ -32,10 +32,10 @@ class Solution {
         return slow
     }
 
-    private fun reverse(head: ListNode?, parent: ListNode?): ListNode? {
-        if (head == null) return null
-        var head: ListNode? = head
-        var parent: ListNode? = parent
+    private fun reverse(headNode: ListNode?, parentNode: ListNode?): ListNode? {
+        if (headNode == null) return null
+        var head: ListNode? = headNode
+        var parent: ListNode? = parentNode
         while (head != null) {
             val next = head.next
             head.next = parent

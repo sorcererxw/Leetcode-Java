@@ -52,7 +52,7 @@ public class _655_Print_Binary_Tree {
 
     public static void main(String[] args) {
         _655_Print_Binary_Tree solution = new _655_Print_Binary_Tree();
-        List<List<String>> lists = solution.printTree(TreeNode.build(new int[]{1, 2, 3, -1, 4}));
+        List<List<String>> lists = solution.printTree(TreeNode.build(new Integer[]{1, 2, 3, -1, 4}));
         for (List<String> list : lists) {
             for (String s : list) {
                 System.out.print(s + " ");

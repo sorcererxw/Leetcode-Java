@@ -40,7 +40,7 @@ public class _637_Average_of_Levels_in_Binary_Tree {
     public static void main(String[] args) {
         _637_Average_of_Levels_in_Binary_Tree solution = new _637_Average_of_Levels_in_Binary_Tree();
         System.out.println(solution.averageOfLevels(
-                TreeNode.build(new int[]{2147483647, 2147483647, 2147483647})
+                TreeNode.build(new Integer[]{2147483647, 2147483647, 2147483647})
         ));
     }
 }
