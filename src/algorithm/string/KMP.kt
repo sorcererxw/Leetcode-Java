@@ -1,4 +1,4 @@
-package algorithm
+package algorithm.string
 
 /**
  * @author: sorcererxw
@@ -51,8 +51,4 @@ class KMP {
         }
         return matches
     }
-}
-
-fun main() {
-    KMP().kmp("abcbcabcbabcabcabc","ababa")
 }
