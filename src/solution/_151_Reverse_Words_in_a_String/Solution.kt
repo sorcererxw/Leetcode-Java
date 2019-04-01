@@ -1,4 +1,4 @@
-package solution._151_Reverse_Words_in_a_String.Solution
+package solution._151_Reverse_Words_in_a_String
 
 import util.println
 import java.util.*
