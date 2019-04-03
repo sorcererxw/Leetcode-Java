@@ -1,4 +1,4 @@
-package solution._504_Base_7
+package solution._504_Base_7;
 
 class Solution {
     public String convertToBase7(int num) {
