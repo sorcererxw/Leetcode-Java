@@ -1,3 +1,5 @@
+package solution._6_;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
