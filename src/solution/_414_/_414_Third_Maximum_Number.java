@@ -1,3 +1,5 @@
+package solution._414_;
+
 /**
  * Author: Sorcerer
  * Date: 2018/4/29
@@ -7,7 +9,7 @@ public class _414_Third_Maximum_Number {
 
     private int MAX_SIZE = 3;
 
-    private int mList[];
+    private int[] mList;
 
     private int mSize = 0;
 
@@ -76,6 +78,7 @@ public class _414_Third_Maximum_Number {
         return mList[minIndex()];
     }
 
+    @SuppressWarnings("WeakerAccess")
     public int thirdMax(int[] nums) {
         mList = new int[MAX_SIZE];
         mSize = 0;
