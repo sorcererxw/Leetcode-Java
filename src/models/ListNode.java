@@ -1,8 +1,5 @@
 package models;
 
-import java.nio.channels.ConnectionPendingException;
-import java.sql.Connection;
-
 /**
  * @author Sorcerer
  * @date 2016/1/6 0006
@@ -16,7 +13,7 @@ public class ListNode {
     }
 
     public static ListNode buildCycleNodeList(int[] value, int cycleEntry) {
-        if(value.length==0) {
+        if (value.length == 0) {
             return null;
         }
         ListNode[] nodes = new ListNode[value.length];
