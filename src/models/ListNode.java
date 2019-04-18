@@ -1,5 +1,8 @@
 package models;
 
+import java.nio.channels.ConnectionPendingException;
+import java.sql.Connection;
+
 /**
  * @author Sorcerer
  * @date 2016/1/6 0006
@@ -26,6 +29,7 @@ public class ListNode {
         if (cycleEntry >= 0 && cycleEntry < nodes.length) {
             nodes[nodes.length - 1].next = nodes[cycleEntry];
         }
+
         return nodes[0];
     }
 
