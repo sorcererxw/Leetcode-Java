@@ -1,4 +1,4 @@
-import com.sun.javafx.runtime.SystemProperties;
+package solution._36_;
 
 /**
  * Created by Sorcerer on 2016/1/9 0009.

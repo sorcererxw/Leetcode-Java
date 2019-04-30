@@ -1,7 +1,6 @@
 package solution._429_N_ary_Tree_Level_Order_Traversal;
 
-
-import javafx.util.Pair;
+import kotlin.Pair;
 
 import java.util.*;
 
@@ -44,8 +43,8 @@ class Solution {
         queue.add(new Pair<>(root, 0));
         while (!queue.isEmpty()) {
             Pair<Node, Integer> pair = queue.poll();
-            Node node = pair.getKey();
-            Integer level = pair.getValue();
+            Node node = pair.component1();
+            Integer level = pair.component2();
             if (node != null) {
                 addRecord(node.val, level);
                 node.children.forEach(it -> queue.add(new Pair<>(it, level + 1)));
