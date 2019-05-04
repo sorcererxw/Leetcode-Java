@@ -1,4 +1,4 @@
-package solution._5_;
+package solution._5_Longest_Palindromic_Substring;
 /**
  * Author: Sorcerer
  * Date: 2018/4/20
