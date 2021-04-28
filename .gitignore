@@ -3,5 +3,4 @@
 out/
 *.iml
 lib
-/src/test
 .vscode
