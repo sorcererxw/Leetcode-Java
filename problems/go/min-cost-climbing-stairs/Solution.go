@@ -1,4 +1,4 @@
-package _746_Min_Cost_Climbing_Stairs
+package main
 
 func min(a int, b int) int {
 	if a < b {
