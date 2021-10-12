@@ -1,0 +1,19 @@
+name: Auto Commit
+
+on:
+  push:
+    branches:
+      - master
+env:
+  MY_GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign to One Project
+    steps:
+      - name: Assign NEW issues and NEW pull requests to project JIKE
+        uses: srggrs/assign-one-project-github-action@1.2.1
+        if: github.event.action == 'opened'
+        with:
+          project: 'https://github.com/orgs/iftechio/projects/10'

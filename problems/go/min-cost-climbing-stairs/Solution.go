@@ -9,10 +9,13 @@ func min(a int, b int) int {
 
 func minCostClimbingStairs(cost []int) int {
 	dp := make([]int, len(cost))
-	dp[0] = cost[0]
-	dp[1] = cost[1]
-	for i := 2; i < len(cost); i++ {
-		dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
+	for i := 0; i < len(cost); i++ {
+		switch i {
+		case 0, 1:
+			dp[i] = cost[i]
+		default:
+			dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
+		}
 	}
 	return min(dp[len(cost)-1], dp[len(cost)-2])
 }

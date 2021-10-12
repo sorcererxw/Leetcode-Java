@@ -1,27 +1,46 @@
 package _95_unique_binary_search_trees_ii
 
-import . "github.com/sorcererxw/leetcode/src/models"
+import (
+	. "github.com/sorcererxw/leetcode/_common/model"
+)
 
 func generateTrees(n int) []*TreeNode {
 	return buildTrees(1, n)
 }
 
 func buildTrees(st, ed int) []*TreeNode {
-	if st > ed {
-		return nil
-	}
 	var res []*TreeNode
 	for i := st; i <= ed; i++ {
 		leftTrees := buildTrees(st, i-1)
 		rightTrees := buildTrees(i+1, ed)
-		for _, lt := range leftTrees {
+		if len(leftTrees) > 0 && len(rightTrees) > 0 {
+			for _, lt := range leftTrees {
+				for _, rt := range rightTrees {
+					res = append(res, &TreeNode{
+						Val:   i,
+						Left:  lt,
+						Right: rt,
+					})
+				}
+			}
+		} else if len(leftTrees) > 0 {
+			for _, lt := range leftTrees {
+				res = append(res, &TreeNode{
+					Val:  i,
+					Left: lt,
+				})
+			}
+		} else if len(rightTrees) > 0 {
 			for _, rt := range rightTrees {
 				res = append(res, &TreeNode{
 					Val:   i,
-					Left:  lt,
 					Right: rt,
 				})
 			}
+		} else {
+			res = append(res, &TreeNode{
+				Val: i,
+			})
 		}
 	}
 	return res
