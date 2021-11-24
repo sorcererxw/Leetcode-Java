@@ -1,0 +1,12 @@
+POST https://leetcode-cn.com/graphql
+Content-Type: application/json
+
+{
+  "operationName": "questionData",
+  "query": "query questionData($titleSlug: String!) {question(titleSlug: $titleSlug) {\nquestionId\nquestionFrontendId\nboundTopicId\ntitle\ntitleSlug\ncontent\ntranslatedTitle\ntranslatedContent\ndifficulty\nlikes\ndislikes\nisLiked\nsimilarQuestions\nexampleTestcases\ntopicTags {\nname\nslug\ntranslatedName\n}\ncompanyTagStats\ncodeSnippets {\nlang\nlangSlug\ncode\n}\nstats\nhints\nstatus\nsampleTestCase\nmetaData\njudgerAvailable\njudgeType\nmysqlSchemas\nenableRunCode\nenableTestMode\nenvInfo\nlibraryUrl\n}\n}",
+  "variables": {
+    "titleSlug": "dice-roll-simulation"
+  }
+}
+
+###

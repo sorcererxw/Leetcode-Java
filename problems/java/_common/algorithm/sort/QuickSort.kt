@@ -33,7 +33,7 @@ class QuickSort<T : Comparable<T>> {
             swap(list, i, j) // 交换，小的在前面，大的在后面
         }
         swap(list, low, j) // 放入最终位置
-        return j // a[low..j-1]<=a[j】<=a[j+1..high]
+        return j // a[low..j-1]<=a[j]<=a[j+1..high]
     }
 
     private fun swap(list: MutableList<T>, i: Int, j: Int) {

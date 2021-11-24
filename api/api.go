@@ -7,9 +7,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/http/httputil"
 )
-
-const endpoint = "https://leetcode.com"
 
 type codeSnippet struct {
 	Lang     string `json:"lang"`
@@ -20,6 +19,8 @@ type codeSnippet struct {
 type question struct {
 	Title              string        `json:"title"`
 	TitleSlug          string        `json:"titleSlug"`
+	TranslatedTitle    string        `json:"translatedTitle"`
+	TranslatedContent  string        `json:"translatedContent"`
 	Status             string        `json:"status"`
 	QuestionID         string        `json:"questionId"`
 	QuestionFrontendID string        `json:"questionFrontendId"`
@@ -31,24 +32,49 @@ type question struct {
 	CodeSnippets       []codeSnippet `json:"codeSnippets"`
 }
 
-type leetcode struct {
+type Leetcode struct {
 	client *http.Client
+	cn     bool
+	debug  bool
 }
 
-func (l *leetcode) request(ctx context.Context, method string, path string, body interface{}, dest interface{}) error {
+func New(debug bool, cn bool) (*Leetcode, error) {
+	return &Leetcode{
+		client: &http.Client{},
+		debug:  debug,
+		cn:     cn,
+	}, nil
+}
+
+func (l *Leetcode) endpoint() string {
+	if l.cn {
+		return "https://leetcode-cn.com"
+	}
+	return "https://leetcode.com"
+}
+
+func (l *Leetcode) request(ctx context.Context, method string, path string, body interface{}, dest interface{}) error {
 	var reqBody io.Reader
 	if body != nil {
-		b, err := json.Marshal(reqBody)
+		b, err := json.Marshal(body)
 		if err != nil {
 			return err
 		}
 		reqBody = bytes.NewReader(b)
 	}
 	req, err := http.NewRequestWithContext(
-		ctx, method, fmt.Sprintf(endpoint+path), reqBody,
+		ctx, method, fmt.Sprintf(l.endpoint()+path), reqBody,
 	)
 	if err != nil {
 		return err
+	}
+	req.Header.Add("Content-Type", "application/json")
+	if l.debug {
+		dump, err := httputil.DumpRequestOut(req, true)
+		if err != nil {
+			return err
+		}
+		fmt.Println(string(dump))
 	}
 	rsp, err := l.client.Do(req)
 	if err != nil {
@@ -56,38 +82,41 @@ func (l *leetcode) request(ctx context.Context, method string, path string, body
 	}
 	defer rsp.Body.Close()
 	if dest != nil {
-		if err := json.NewDecoder(rsp.Body).Decode(dest); err != nil {
+		b, err := io.ReadAll(rsp.Body)
+		if err != nil {
+			return err
+		}
+		if l.debug {
+			fmt.Println(string(b))
+		}
+		if err := json.Unmarshal(b, dest); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (l *leetcode) Submit(ctx context.Context, questionID string, titleSlug string, langSlug string, code string) (string, error) {
-	l.request(ctx, http.MethodPost, "/", map[string]string{
-		"",
-	}, nil)
+func (l *Leetcode) graphql(ctx context.Context, operationName string, variables map[string]interface{}, query string, dest interface{}) error {
+	return l.request(ctx, http.MethodPost, "/graphql", map[string]interface{}{
+		"operationName": operationName,
+		"variables":     variables,
+		"query":         query,
+	}, dest)
 }
 
-type SubmitDetail struct {
-}
-
-func (*leetcode) Check(ctx context.Context, submitID string) error {
-
-	http.NewRequest(
-		http.MethodGet,
-		fmt.Sprintf("%s/submissions/detail/%s/check/", endpoint, submitID),
-		nil)
-}
-
-func (l *leetcode) QuestionData(ctx context.Context, titleSlug string) (*question, error) {
-	var ret question
-	arg := map[string]interface{}{
-		"operationName": "questionData",
-		"variables": map[string]string{
+func (l *Leetcode) QuestionData(ctx context.Context, titleSlug string) (*question, error) {
+	var ret struct {
+		Data struct {
+			Question *question `json:"question"`
+		} `json:"data"`
+	}
+	err := l.graphql(
+		ctx,
+		"questionData",
+		map[string]interface{}{
 			"titleSlug": titleSlug,
 		},
-		"query": `
+		`
 query questionData($titleSlug: String!) {
 	question(titleSlug: $titleSlug) {
 		questionId
@@ -98,60 +127,54 @@ query questionData($titleSlug: String!) {
 		content
 		translatedTitle
 		translatedContent
-		isPaidOnly
 		difficulty
 		likes
 		dislikes
 		isLiked
 		similarQuestions
 		exampleTestcases
-		contributors {
-			username
-			profileUrl
-			avatarUrl
-			__typename
-		}
 		topicTags {
 			name
 			slug
 			translatedName
-			__typename
 		}
 		companyTagStats
 			codeSnippets {
 			lang
 			langSlug
 			code
-			__typename
 		}
 		stats
 		hints
-		solution {
-			id
-			canSeeDetail
-			paidOnly
-			hasVideoSolution
-			paidOnlyVideo
-			__typename
-		}
 		status
 		sampleTestCase
 		metaData
 		judgerAvailable
 		judgeType
 		mysqlSchemas
-		enableRunCode
-		enableTestMode
-		enableDebugger
 		envInfo
 		libraryUrl
-		adminUrl
-		__typename
 	}
 }`,
-	}
-	if err := l.request(ctx, http.MethodPost, "/graphql", arg, &ret); err != nil {
+		&ret)
+	if err != nil {
 		return nil, err
 	}
-	return &ret, nil
+	return ret.Data.Question, nil
 }
+
+// func (l *Leetcode) Submit(ctx context.Context, questionID string, titleSlug string, langSlug string, code string) (string, error) {
+// 	l.request(ctx, http.MethodPost, "/", map[string]string{
+// 		"",
+// 	}, nil)
+// }
+
+type SubmitDetail struct {
+}
+
+// func (*Leetcode) Check(ctx context.Context, submitID string) error {
+// 	http.NewRequest(
+// 		http.MethodGet,
+// 		fmt.Sprintf("%s/submissions/detail/%s/check/", endpoint, submitID),
+// 		nil)
+// }

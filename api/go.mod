@@ -1,4 +1,4 @@
-module github.com/sorcererxw/leetcode/problems/go
+module github.com/sorcererxw/leetcode/api
 
 go 1.17
 

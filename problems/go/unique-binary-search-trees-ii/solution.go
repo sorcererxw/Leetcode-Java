@@ -1,7 +1,7 @@
 package _95_unique_binary_search_trees_ii
 
 import (
-	. "github.com/sorcererxw/leetcode/_common/model"
+	. "github.com/sorcererxw/leetcode/problems/go/_common/model"
 )
 
 func generateTrees(n int) []*TreeNode {

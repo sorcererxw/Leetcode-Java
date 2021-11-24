@@ -1,7 +1,7 @@
 package reverse_linked_list
 
 import (
-	. "github.com/sorcererxw/leetcode/_common/model"
+	. "github.com/sorcererxw/leetcode/problems/go/_common/model"
 )
 
 func reverseList(head *ListNode) *ListNode {

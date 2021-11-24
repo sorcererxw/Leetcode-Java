@@ -20,7 +20,4 @@ values ('2', '1', '5');
 insert into ActorDirector (actor_id, director_id, timestamp)
 values ('2', '1', '6');
 
-SELECT actor_id, director_id
-FROM ActorDirector
-GROUP BY actor_id, director_id
-HAVING COUNT(*) >= 3
+w
