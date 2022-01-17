@@ -162,19 +162,3 @@ query questionData($titleSlug: String!) {
 	}
 	return ret.Data.Question, nil
 }
-
-// func (l *Leetcode) Submit(ctx context.Context, questionID string, titleSlug string, langSlug string, code string) (string, error) {
-// 	l.request(ctx, http.MethodPost, "/", map[string]string{
-// 		"",
-// 	}, nil)
-// }
-
-type SubmitDetail struct {
-}
-
-// func (*Leetcode) Check(ctx context.Context, submitID string) error {
-// 	http.NewRequest(
-// 		http.MethodGet,
-// 		fmt.Sprintf("%s/submissions/detail/%s/check/", endpoint, submitID),
-// 		nil)
-// }

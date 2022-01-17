@@ -1,23 +1,35 @@
 package cmd
 
 import (
+	"fmt"
+	"regexp"
 	"strings"
 
+	md "github.com/JohannesKaufmann/html-to-markdown"
+	"github.com/charmbracelet/glamour"
 	"github.com/spf13/cobra"
 
 	"github.com/sorcererxw/leetcode/api"
 )
 
 func init() {
-	RootCmd.AddCommand(ShowCmd)
-	ShowCmd.Flags().StringP("slug", "s", "", "Problem Slug")
-	ShowCmd.Flags().StringP("lang", "l", "", "Snippet language")
+	RootCmd.AddCommand(showCmd)
+	showCmd.Flags().StringP("slug", "s", "", "Problem Slug")
+	showCmd.Flags().StringP("lang", "l", "", "Snippet language")
 }
 
-var ShowCmd = &cobra.Command{
+func extractSlug(s string) string {
+	re := regexp.MustCompile("^https://leetcode(?:-cn)?\\.com/problems/([a-zA-Z0-9-]*)($|/)")
+	if v := re.FindStringSubmatch(s); len(v) >= 2 {
+		return v[1]
+	}
+	return s
+}
+
+var showCmd = &cobra.Command{
 	Use:   "show",
 	Short: "Show problem",
-	RunE: func(cmd *cobra.Command, args []string) error {
+	RunE: func(cmd *cobra.Command, _ []string) error {
 		debug, err := cmd.Flags().GetBool("debug")
 		if err != nil {
 			return err
@@ -26,6 +38,7 @@ var ShowCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		slug = extractSlug(slug)
 		lang, err := cmd.Flags().GetString("lang")
 		if err != nil {
 			return err
@@ -46,30 +59,54 @@ var ShowCmd = &cobra.Command{
 			cmd.Println("Question not found")
 			return nil
 		}
-		//content, err := html2text.FromString(q.Content)
-		//if err != nil {
-		//	return err
-		//}
-		if cn && q.TranslatedTitle != "" {
-			cmd.Println(q.TranslatedTitle)
-		} else {
-			cmd.Println(q.Title)
+		body := ""
+		{
+			title := q.Title
+			if cn && q.TranslatedTitle != "" {
+				title = q.TranslatedTitle
+			}
+			body += "# " + title + "\n"
 		}
-		cmd.Println()
-		if cn && q.TranslatedContent != "" {
-			cmd.Println(q.TranslatedContent)
-		} else {
-			cmd.Println(q.Content)
-		}
-		for _, snip := range q.CodeSnippets {
-			if snip.LangSlug == lang || strings.ToLower(snip.Lang) == lang {
-				cmd.Println()
-				cmd.Printf("Snippet[%s]:\n", snip.Lang)
-				cmd.Println()
-				cmd.Println(snip.Code)
-				break
+		{
+			if q.Difficulty != "" {
+				body += fmt.Sprintf("`%s`\n", q.Difficulty)
 			}
 		}
+		{
+			content := q.Content
+			if cn && q.TranslatedContent != "" {
+				content = q.TranslatedContent
+			}
+			if debug {
+				fmt.Println(content)
+			}
+			content, err := md.NewConverter("", true, &md.Options{}).ConvertString(content)
+			if err != nil {
+				return err
+			}
+			body += "## Description\n" + content + "\n"
+		}
+		{
+			for _, snip := range q.CodeSnippets {
+				if snip.LangSlug == lang || strings.ToLower(snip.Lang) == lang {
+					body += fmt.Sprintf("## Snippet:\n```%s\n%s\n```", snip.LangSlug, snip.Code)
+					break
+				}
+			}
+		}
+
+		if debug {
+			cmd.Println(body)
+		}
+		render, err := glamour.NewTermRenderer(glamour.WithAutoStyle(), glamour.WithWordWrap(100))
+		if err != nil {
+			return err
+		}
+		out, err := render.Render(body)
+		if err != nil {
+			return err
+		}
+		cmd.Println(out)
 		return nil
 	},
 }

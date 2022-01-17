@@ -10,4 +10,5 @@ func init() {
 	RootCmd.PersistentFlags().Bool("cn", false, "Use leetcode-cn.com")
 }
 
+// RootCmd is the entry of cli.
 var RootCmd = &cobra.Command{}
