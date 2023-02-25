@@ -4,13 +4,13 @@ go 1.17
 
 require (
 	github.com/JohannesKaufmann/html-to-markdown v1.3.0
-	github.com/PuerkitoBio/goquery v1.5.1
 	github.com/charmbracelet/glamour v0.3.0
 	github.com/sorcererxw/leetcode/api v1.0.0
 	github.com/spf13/cobra v1.2.1
 )
 
 require (
+	github.com/PuerkitoBio/goquery v1.5.1 // indirect
 	github.com/alecthomas/chroma v0.8.2 // indirect
 	github.com/andybalholm/cascadia v1.1.0 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
@@ -30,7 +30,7 @@ require (
 	github.com/yuin/goldmark v1.3.5 // indirect
 	github.com/yuin/goldmark-emoji v1.0.1 // indirect
 	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 // indirect
-	golang.org/x/sys v0.0.0-20210510120138-977fb7262007 // indirect
+	golang.org/x/sys v0.1.0 // indirect
 )
 
 replace github.com/sorcererxw/leetcode/api v1.0.0 => ../api
